@@ -404,10 +404,7 @@ class TraceCollectionBase(object):
                 self.markActiveVariableAsEscaped(variable)
 
             elif variable.isLocalVariable():
-                if (
-                    python_version >= 300
-                    and variable.hasWritesOutsideOf(self.owner) is not False
-                ):
+                if variable.hasAccessesOutsideOf(self.owner) is not False:
                     self.markActiveVariableAsEscaped(variable)
 
     def removeAllKnowledge(self):
